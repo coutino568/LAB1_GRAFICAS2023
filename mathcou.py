@@ -59,3 +59,32 @@ resultadoMatrices= matrixMultiplication(matrix3,matrix4)
 
 #resultado esperado
 resultadoMatrices= matrixVectorMultiplication(matrix1,vector1)
+
+
+def baricentricCoordinates(A, B, C, P):
+    
+    ABC_Area = getAreaOfTiangle(A,B,C)
+    PBC_Area= getAreaOfTiangle(P,B,C)
+    APC_Area= getAreaOfTiangle(A,P,C)
+    ABP_Area= getAreaOfTiangle(A,B,P)
+    
+    u= PBC_Area/ABC_Area
+    v= APC_Area/ABC_Area
+    w=  ABP_Area/ ABC_Area
+    
+    
+    return u,v,w
+    
+    
+    
+    
+    
+def getAreaOfTiangle(A,B,C):
+    # print (A)
+    # print (B)
+    # print(C)
+    result = 0.5*((A[0]*B[1])+(B[0]*C[1])+(C[0]*A[1]))- 0.5*((A[1]*B[0])+(B[1]*C[0])+(C[1]*A[0]))
+    
+    
+    
+    return result

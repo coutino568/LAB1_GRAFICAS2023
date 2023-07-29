@@ -87,56 +87,70 @@ def renderizar():
 # transformarVertices()
 # renderizar()
 
-#poligono1
-faces1=[[0,1,9],[1,2,3],[3,4,5],[5,6,7],[7,8,9],[1,7,9],[1,5,7],[1,3,5]]
-myRenderer.polygonGeneral(poligono1,faces1)
+# #poligono1
+# faces1=[[0,1,9],[1,2,3],[3,4,5],[5,6,7],[7,8,9],[1,7,9],[1,5,7],[1,3,5]]
+# myRenderer.polygonGeneral(poligono1,faces1)
 
-#poligono2
-faces2=[[0,1,2],[1,2,3],[2,3,0]]
-myRenderer.polygonGeneral(poligono2,faces2)
+# #poligono2
+# faces2=[[0,1,2],[1,2,3],[2,3,0]]
+# myRenderer.polygonGeneral(poligono2,faces2)
 
-#poligono3
+# #poligono3
 
-faces3=[[0,1,2]]
-myRenderer.polygonGeneral(poligono3,faces3)
+# faces3=[[0,1,2]]
+# myRenderer.polygonGeneral(poligono3,faces3)
 
-#poligono
+# #poligono
 
-print(len(poligono4))
-faces4=[[0,1,17],[1,17,16],[1,2,16],[2,3,16],[3,4,5],[3,5,6],[3,6,16],[6,7,16],[7,8,9],[7,9,16],[9,10,11],[9,11,16],[11,12,13],[11,13,14],[14,15,16],[11,14,16]]
-myRenderer.polygonGeneral(poligono4,faces4)
-
-
-#poligono5
-print(len(poligono5))
-faces5=[[1,2,0],[0,2,3]]
-myRenderer.glColor(1,1,1)
-myRenderer.polygonGeneral(poligono5,faces5)
+# print(len(poligono4))
+# faces4=[[0,1,17],[1,17,16],[1,2,16],[2,3,16],[3,4,5],[3,5,6],[3,6,16],[6,7,16],[7,8,9],[7,9,16],[9,10,11],[9,11,16],[11,12,13],[11,13,14],[14,15,16],[11,14,16]]
+# myRenderer.polygonGeneral(poligono4,faces4)
 
 
+# #poligono5
+# print(len(poligono5))
+# faces5=[[1,2,0],[0,2,3]]
+# myRenderer.glColor(1,1,1)
+# myRenderer.polygonGeneral(poligono5,faces5)
 
 
-#poligono trasladado
-myRenderer.glColor(0,0,0)
-movex=350
-movey=350
-poligono6= poligono4
-for poli in poligono6:
-    poli[0]+=movex
-    poli[1]+=movey
+
+
+# #poligono trasladado
+# myRenderer.glColor(0,0,0)
+# movex=350
+# movey=350
+# poligono6= poligono4
+# for poli in poligono6:
+#     poli[0]+=movex
+#     poli[1]+=movey
     
     
-poligono7= poligono5
-for poli in poligono7:
-    poli[0]+=movex
-    poli[1]+=movey   
+# poligono7= poligono5
+# for poli in poligono7:
+#     poli[0]+=movex
+#     poli[1]+=movey   
 
-faces6=faces4
-faces7 =faces5
+# # faces6=faces4
+# # faces7 =faces5
 
-myRenderer.polygonGeneral(poligono6,faces6)
-myRenderer.glColor(1,1,1)
-myRenderer.polygonGeneral(poligono7,faces7)
+# myRenderer.polygonGeneral(poligono6,faces6)
+# myRenderer.glColor(1,1,1)
+# myRenderer.polygonGeneral(poligono7,faces7)
+
+
+# A=[90,50]
+# B=[1700,200]
+# C=[150,1000]
+
+A=[random.randrange(0,windoWidth), random.randrange(0,windowHeight)]
+B=[random.randrange(0,windoWidth), random.randrange(0,windowHeight)]
+C=[random.randrange(0,windoWidth), random.randrange(0,windowHeight)]
+
+print(A,B,C)
+myRenderer.glTriangle3(A,B,C)
+# myRenderer.glTriangle2(A,B,C)
+
 
 
 

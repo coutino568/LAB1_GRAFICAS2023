@@ -2,7 +2,8 @@ import struct
 
 from collections import namedtuple
 
-
+from  math import *
+from mathcou import *
 
 
 V2 = namedtuple('Point2', ['x', 'y'])
@@ -217,7 +218,42 @@ class Renderer(object):
         return
 
 
-
+    colorA=(0,1,0)
+    colorB=(1,0,0)
+    colorC=(0,0,1)
+    
+    
+    def glTriangle3(self,A,B,C):
+        
+        minx= min(A[0],B[0],C[0])
+        maxx= max(A[0],B[0],C[0])
+        miny=min(A[1],B[1],C[1])
+        maxy=max(A[1],B[1],C[1])
+        colorA=[0,1,0]
+        colorB=[1,0,0]
+        colorC=[0,0,1]
+        
+        print(str(minx) + " ; " + str(miny)+  " ; " +str(maxx) + " ; " +str(maxy))
+        for x in range(minx, maxx+1):
+            for y in range(miny, maxy+1):
+                thispoint=[x,y]
+                u,v,w = baricentricCoordinates(A,B,C,thispoint)
+                
+                if(0<=u<=1 and 0<=v<=1 and 0<=w<=1  and isclose(u+v+w,1.0)):
+                    componente1= u*colorA[0]+v*colorB[0]+w*colorC[0]
+                    componente2= u*colorA[1]+v*colorB[1]+w*colorC[1]
+                    componente3= u*colorA[2]+v*colorB[2]+w*colorC[2]
+                    
+                    self.glColor(componente1, componente2, componente3)
+                    self.glVertex(x,y)
+                    
+                
+                
+                
+        
+        
+        
+        
 
 
     def glFinish(self,filename):
