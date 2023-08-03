@@ -1,10 +1,12 @@
 from os import read
-
+from texture import *
+from mathcou import *
+import math
 #CLASE PARA LEER Y DEFINIR LOS COMPONENTES QUE CONFORMAN AL OBJETO EN LA ESCENA
 
 
 class Object() :
-    def __init__(self, filename) :
+    def __init__(self, filename,textureFileName) :
         
         
         self.filename = filename
@@ -12,11 +14,14 @@ class Object() :
         self.faces = []
         self.normals = []
         self.texcoords = []
+        self.textureFilename= textureFileName
         
         with open(filename, "r") as file:
             self.lines= file.read().splitlines()
         self.readFile()
         # self.printMe()
+        if textureFileName !=None:
+            self.texture= Texture(self.textureFilename)
         
         
     def printMe(self):
@@ -26,7 +31,7 @@ class Object() :
         print("Mis textcoord son :\n" + str(self.texcoords))
         
         
-        
+    
         
         
         
@@ -52,3 +57,24 @@ class Object() :
                 elif prefix == 'f': 
                     self.faces.append( [ list(map(int, vert.split('/'))) for vert in value.split(' ')] )
 
+    #Define la operacion de traslacion de una matriz.
+    def transformObject(self,movementX,movementY,movementZ):
+        traslationMatrix = [[1,0,0,movementX],[0,1,0,movementY],[0,0,1,movementZ],[0,0,0,1]]
+        self.objectmatrix = matrixVectorMultiplication(self.objectmatrix, traslationMatrix)
+        
+    
+    #Define la operacion de escala de una matriz.
+    def scaleObject(self,scaleX,scaleY,scaleZ):
+        scaleMatrix = [[scaleX,0,0,0],[0,scaleY,0,0],[0,0,scaleZ,0],[0,0,0,1]]
+        self.objectmatrix = matrixVectorMultiplication(self.objectmatrix, scaleMatrix)
+        
+    #Define la operacion de traslacion de una matriz.
+    def rotateObject(self,rotationX,rotationY,rotationZ):
+        
+        RotationMatrixX = [[1,0,0,0],[0,math.cos(rotationX),-math.sin(rotationX),0,0],[0,0,1,movementZ],[0,0,0,1]]
+        RotationMatrixY = [[math.cos(rotationY),0,math.sin(rotationY),0],[0,1,0,0],[-math.sin(rotationY),0,math.cos(rotationY),0],[0,0,0,1]]
+        RotationMatrixZ = [[1,0,0,0],[0,math.cos(rotationX),-math.sin(rotationX),0,0],[0,0,1,0],[0,0,0,1]]
+
+        self.objectmatrix = matrixVectorMultiplication(self.objectmatrix, traslationMatrix)
+        
+        

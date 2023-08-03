@@ -51,8 +51,8 @@ class Renderer(object):
         self.viewportH = int(height)
         self.viewportX = int(x)
         self.viewportY = int(y)
-        print("Viewport is defined from : " + str(x) + " , " + str(y) )
-        print("To :  " + str(x+width) + " , " + str(y+height) )
+        # print("Viewport is defined from : " + str(x) + " , " + str(y) )
+        # print("To :  " + str(x+width) + " , " + str(y+height) )
         self.glClear()
         self.glClearviewport()
         
@@ -87,7 +87,7 @@ class Renderer(object):
         #     print("point out of viewport")
 
 
-    def glColor(self, r,g,b):
+    def glSetColor(self, r,g,b):
         self.mainColor = color(r,g,b)
 
 
@@ -263,6 +263,8 @@ class Renderer(object):
             file.write(dword(14 + 40 + (self.width * self.height * 3)))
             file.write(dword(0))
             file.write(dword(14 + 40))
+            
+            
             file.write(dword(40))
             file.write(dword(self.width))
             file.write(dword(self.height))
